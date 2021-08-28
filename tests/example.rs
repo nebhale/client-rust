@@ -16,6 +16,7 @@
 
 use postgres::{Client, NoTls};
 
+use service_bindings::binding::Binding;
 use service_bindings::bindings;
 
 fn main() {
@@ -27,9 +28,9 @@ fn main() {
     }
 
     let u = c[0].get("url");
-    let conn = match u {
+    let _conn = match u {
         None => panic!("No URL in binding"),
-        Some(u) => Client::connect(u, NoTls),
+        Some(u) => Client::connect(&u, NoTls),
     };
 
     // ...

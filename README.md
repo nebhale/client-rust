@@ -10,6 +10,7 @@
 ```rust
 use postgres::{Client, NoTls};
 
+use service_bindings::binding::Binding;
 use service_bindings::bindings;
 
 fn main() {
