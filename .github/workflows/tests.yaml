@@ -12,11 +12,13 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
       with:
-        path: ~/.cargo
-        key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-cargo-
-          ${{ runner.os }}-
+        path: |
+              ~/.cargo/bin/
+              ~/.cargo/registry/index/
+              ~/.cargo/registry/cache/
+              ~/.cargo/git/db/
+              target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     - uses: actions-rs/install@v0.1
       with:
         crate: cargo-tarpaulin
@@ -28,7 +30,3 @@ jobs:
       with:
         command: tarpaulin
     - uses: codecov/codecov-action@v2
-    - uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: target/tarpaulin/service-bindings-coverage.json
