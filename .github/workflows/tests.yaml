@@ -29,4 +29,5 @@ jobs:
     - uses: actions-rs/cargo@v1
       with:
         command: tarpaulin
-    - uses: codecov/codecov-action@v2
+    - name: Report coverage
+      run: bash <(curl -s https://codecov.io/bash)
