@@ -16,6 +16,14 @@
 name = "service-bindings"
 version = "1.0.0"
 edition = "2018"
+license = "Apache-2.0"
+
+description = "A library to access [Service Binding Specification for Kubernetes](https://k8s-service-bindings.github.io/spec/) conformant Service Binding [Workload Projections](https://k8s-service-bindings.github.io/spec/#workload-projection)"
+homepage = "https://github.com/nebhale/client-rust"
+repository = "https://github.com/nebhale/client-rust"
+categories = ["development-tools::ffi"]
+
+exclude = ["/testdata", "/tests", ".*"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
