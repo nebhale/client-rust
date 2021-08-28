@@ -1,0 +1,26 @@
+name: Tests
+"on":
+  pull_request: {}
+  push:
+    branches:
+    - main
+jobs:
+  unit:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: ~/.cargo
+        key: ${{ runner.os }}-cargo-${{ hashFiles('cargo.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-
+          ${{ runner.os }}-
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+    - uses: actions-rs/cargo@v1
+      with:
+        command: tarpaulin
+    - uses: codecov/codecov-action@v2
