@@ -17,6 +17,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-cargo-
           ${{ runner.os }}-
+    - uses: actions-rs/install@v0.1
+      with:
+        crate: cargo-tarpaulin
+        version: latest
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
