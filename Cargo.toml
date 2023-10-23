@@ -15,7 +15,7 @@
 [package]
 name = "service-bindings"
 version = "1.0.0"
-edition = "2018"
+edition = "2021"
 license = "Apache-2.0"
 
 description = "A library to access [Service Binding Specification for Kubernetes](https://k8s-service-bindings.github.io/spec/) conformant Service Binding [Workload Projections](https://k8s-service-bindings.github.io/spec/#workload-projection)"
