@@ -28,7 +28,7 @@ exclude = ["/testdata", "/tests", ".*"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-lazy_static = "1.4"
+lazy_static = "1.5"
 regex = "1.7"
 
 [dev-dependencies]
