@@ -8,8 +8,6 @@ updates:
   labels:
   - dependencies
   - github-actions
-  reviewers:
-  - nebhale
 
 - package-ecosystem: cargo
   directory: /
@@ -18,5 +16,3 @@ updates:
   labels:
   - dependencies
   - cargo
-  reviewers:
-  - nebhale
