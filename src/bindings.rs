@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-use std::collections::HashMap;
 use std::env;
 use std::path::Path;
 
-use crate::binding::{Binding, CacheBinding, HashMapBinding};
+use crate::binding::{Binding, CacheBinding, ConfigTreeBinding};
 
 pub const SERVICE_BINDING_ROOT: &str = "SERVICE_BINDING_ROOT";
 
@@ -51,7 +50,7 @@ pub fn from(root: impl AsRef<Path>) -> Vec<impl Binding> {
                     return None;
                 }
 
-                return Some(HashMapBinding::new(c.file_name().to_str().unwrap(), HashMap::new()));
+                return Some(ConfigTreeBinding::new(c.path()));
             });
         }).collect();
     });
@@ -164,6 +163,20 @@ mod tests {
     #[test]
     fn from_valid() {
         assert_eq!(3, bindings::from("testdata").len());
+    }
+
+    #[test]
+    fn from_content() {
+        let b = bindings::find(bindings::from("testdata"), "test-name-1").unwrap();
+
+        assert_eq!(Ok(String::from("test-type-1")), b.get_type());
+        assert_eq!(Some(String::from("test-provider-1")), b.get_provider());
+        assert_eq!(Some(String::from("test-secret-value")), b.get("test-secret-key"));
+    }
+
+    #[test]
+    fn from_filter() {
+        assert_eq!(2, bindings::filter(bindings::from("testdata"), "test-type-1").len());
     }
 
     #[test]

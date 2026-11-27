@@ -158,7 +158,7 @@ impl Binding for ConfigTreeBinding {
     }
 
     fn get_name(&self) -> String {
-        return self.root.file_stem()
+        return self.root.file_name()
             .and_then(|s| s.to_str())
             .map(|s| s.to_string())
             .unwrap();
@@ -320,6 +320,12 @@ mod tests {
     fn config_tree_binding_get_name() {
         let b = ConfigTreeBinding::new("testdata/test-k8s");
         assert_eq!(String::from("test-k8s"), b.get_name())
+    }
+
+    #[test]
+    fn config_tree_binding_get_name_with_dot() {
+        let b = ConfigTreeBinding::new("testdata/test.k8s");
+        assert_eq!(String::from("test.k8s"), b.get_name())
     }
 
     #[test]
